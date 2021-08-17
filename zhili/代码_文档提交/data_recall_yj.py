@@ -50,6 +50,7 @@ def data_recall():
     temperature_save = open('origin_yj/气温.txt','w',encoding='utf-8')
     disaster_name_save = open('origin_yj/灾害名.txt','w',encoding='utf-8')
     density_save = open('origin_yj/密度.txt','w',encoding='utf-8')
+    event_name_save = open('origin_yj/事件名.txt','w',encoding='utf-8')
     volume_save = open('origin_yj/体积.txt','w',encoding='utf-8')
     position_save = open('origin_yj/方位.txt','w',encoding='utf-8')
     date_save = open('origin_yj/日期.txt','w',encoding='utf-8')
@@ -96,7 +97,7 @@ def data_recall():
             # elif ('东' in line or '南' in line or '西' in line or '北' in line) and '风' in line:
             #     wind_direction_save.write(line)
             #     wind_direction_save.write('\n')
-            if '°C' in line or '气温' in line:
+            if '°C' in line or '气温' in line or '温度' in line:
                 temperature_save.write(line)
                 temperature_save.write('\n')
             elif '滑坡' in line or '塌' in line or '泥石流' in line or '水土流失' in line\
@@ -106,7 +107,10 @@ def data_recall():
             elif '密度' in line:
                 density_save.write(line)
                 density_save.write('\n')
-            elif 'm3' in line or '体积' in line:
+            elif '"' in line:
+                event_name_save.write(line)
+                event_name_save.write('\n')
+            elif 'm3' in line or '体积' in line or 'm³' in line:
                 volume_save.write(line)
                 volume_save.write('\n')
             elif '东' in line or '南' in line or '西' in line or '北' in line or '方向' in line:
@@ -149,7 +153,7 @@ def data_recall():
             elif '倾角' in line:
                 dip_angle_save.write(line)
                 dip_angle_save.write('\n')
-            elif '面积' in line or 'm2' in line:
+            elif '面积' in line or 'm2' in line or '㎡' in line:
                 area_save.write(line)
                 area_save.write('\n')
             elif '级' in line or '规模' in line:
@@ -217,6 +221,7 @@ def data_recall():
     date_save.close()
     position_save.close()
     volume_save.close()
+    event_name_save.close()
     density_save.close()
     disaster_name_save.close()
     temperature_save.close()
